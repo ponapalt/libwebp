@@ -125,7 +125,7 @@ static WEBP_INLINE double SSIMCalculation(const DistoStats* const stats) {
     const uint64_t den_S = (sxx + syy + C2) >> 8;
     const uint64_t fnum = (2 * xmym + C1) * num_S;
     const uint64_t fden = (xmxm + ymym + C1) * den_S;
-    const double r = (double)fnum / fden;
+    const double r = (double)(int64_t)fnum / (int64_t)fden;
     assert(r >= 0. && r <= 1.0);
     return r;
   }

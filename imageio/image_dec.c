@@ -76,17 +76,17 @@ static int FailReader(const uint8_t* const data, size_t data_size,
 WebPImageReader WebPGetImageReader(WebPInputFileFormat format) {
   switch (format) {
     case WEBP_PNG_FORMAT:
-      return ReadPNG;
+      return &ReadPNG;
     case WEBP_JPEG_FORMAT:
-      return ReadJPEG;
+      return &ReadJPEG;
     case WEBP_TIFF_FORMAT:
-      return ReadTIFF;
+      return &ReadTIFF;
     case WEBP_WEBP_FORMAT:
-      return ReadWebP;
+      return &ReadWebP;
     case WEBP_PNM_FORMAT:
-      return ReadPNM;
+      return &ReadPNM;
     default:
-      return FailReader;
+      return &FailReader;
   }
 }
 
