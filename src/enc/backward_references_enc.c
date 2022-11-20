@@ -155,7 +155,7 @@ static PixOrCopyBlock* BackwardRefsNewBlock(VP8LBackwardRefs* const refs) {
   if (b == NULL) {   // allocate new memory chunk
     const size_t total_size =
         sizeof(*b) + refs->block_size_ * sizeof(*b->start_);
-    b = (PixOrCopyBlock*)WebPSafeMalloc(1ULL, total_size);
+    b = (PixOrCopyBlock*)WebPSafeMalloc(1Ui64, total_size);
     if (b == NULL) {
       refs->error_ |= 1;
       return NULL;
