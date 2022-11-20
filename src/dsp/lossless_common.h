@@ -100,7 +100,7 @@ static WEBP_INLINE uint64_t VP8LFastSLog2(uint32_t v) {
 }
 
 static WEBP_INLINE uint64_t RightShiftRound(uint64_t v, uint32_t shift) {
-  return (v + (1ull << shift >> 1)) >> shift;
+  return (v + (1Ui64 << shift >> 1)) >> shift;
 }
 
 static WEBP_INLINE int64_t DivRound(int64_t a, int64_t b) {
