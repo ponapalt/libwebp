@@ -717,7 +717,7 @@ static int AllocateMemory(VP8Decoder* const dec) {
   const uint64_t alpha_size =
       (dec->alpha_data != NULL)
           ? (uint64_t)dec->pic_hdr.width * dec->pic_hdr.height
-          : 0ULL;
+          : 0Ui64;
   const uint64_t needed = (uint64_t)intra_pred_mode_size + top_size +
                           mb_info_size + f_info_size + yuv_size + mb_data_size +
                           cache_size + alpha_size + WEBP_ALIGN_CST;

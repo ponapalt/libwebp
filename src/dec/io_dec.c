@@ -325,7 +325,7 @@ static int InitYUVRescaler(const VP8Io* const io, WebPDecParams* const p) {
     return 0;
   }
 
-  work = (rescaler_t*)WebPSafeMalloc(1ULL, (size_t)total_size);
+  work = (rescaler_t*)WebPSafeMalloc(1Ui64, (size_t)total_size);
   if (work == NULL) {
     return 0;  // memory error
   }
@@ -516,7 +516,7 @@ static int InitRGBRescaler(const VP8Io* const io, WebPDecParams* const p) {
     return 0;
   }
 
-  work = (rescaler_t*)WebPSafeMalloc(1ULL, (size_t)total_size);
+  work = (rescaler_t*)WebPSafeMalloc(1Ui64, (size_t)total_size);
   if (work == NULL) {
     return 0;  // memory error
   }
@@ -599,7 +599,7 @@ static int CustomSetup(VP8Io* io) {
       if (io->fancy_upsampling) {
 #ifdef FANCY_UPSAMPLING
         const int uv_width = (io->mb_w + 1) >> 1;
-        p->memory = WebPSafeMalloc(1ULL, (size_t)(io->mb_w + 2 * uv_width));
+        p->memory = WebPSafeMalloc(1Ui64, (size_t)(io->mb_w + 2 * uv_width));
         if (p->memory == NULL) {
           return 0;  // memory error.
         }
