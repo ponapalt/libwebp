@@ -120,7 +120,7 @@ int GIFReadFrame(GifFileType* const gif, int transparent_index,
   int ok = 0;
   *gif_rect = rect;
 
-  if (memory_needed != (size_t)memory_needed || memory_needed > (4ULL << 32)) {
+  if (memory_needed != (size_t)memory_needed || memory_needed > (4ui64 << 32)) {
     fprintf(stderr, "Image is too large (%d x %d).", rect.width, rect.height);
     return 0;
   }

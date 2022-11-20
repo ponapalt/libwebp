@@ -250,7 +250,7 @@ WEBP_NODISCARD static int ApplyFiltersAndEncode(
   InitFilterTrial(&best);
 
   if (try_map != FILTER_TRY_NONE) {
-    uint8_t* filtered_alpha = (uint8_t*)WebPSafeMalloc(1ULL, data_size);
+    uint8_t* filtered_alpha = (uint8_t*)WebPSafeMalloc(1Ui64, data_size);
     if (filtered_alpha == NULL) return 0;
 
     for (filter = WEBP_FILTER_NONE; ok && try_map; ++filter, try_map >>= 1) {
@@ -331,7 +331,7 @@ WEBP_NODISCARD static int EncodeAlpha(VP8Encoder* const enc, int quality,
     filter = WEBP_FILTER_NONE;
   }
 
-  quant_alpha = (uint8_t*)WebPSafeMalloc(1ULL, data_size);
+  quant_alpha = (uint8_t*)WebPSafeMalloc(1Ui64, data_size);
   if (quant_alpha == NULL) {
     return WebPEncodingSetError(pic, VP8_ENC_ERROR_OUT_OF_MEMORY);
   }

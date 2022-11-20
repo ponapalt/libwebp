@@ -110,7 +110,7 @@ extern const uint16_t VP8I16ModeOffsets[4];
 typedef int64_t score_t;  // type used for scores, rate, distortion
 // Note that MAX_COST is not the maximum allowed by sizeof(score_t),
 // in order to allow overflowing computations.
-#define MAX_COST ((score_t)0x7fffffffffffffLL)
+#define MAX_COST ((score_t)0x7fffffffffffffi64)
 
 #define QFIX 17
 #define BIAS(b) ((b) << (QFIX - 8))
