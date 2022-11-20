@@ -23,6 +23,8 @@
 #include "src/enc/vp8i_enc.h"
 #include "src/webp/types.h"
 
+#pragma warning(disable:4761)
+
 #define DO_TRELLIS_I4 1
 #define DO_TRELLIS_I16 1  // not a huge gain, but ok at low bitrate.
 #define DO_TRELLIS_UV 0   // disable trellis for UV. Risky. Not worth.

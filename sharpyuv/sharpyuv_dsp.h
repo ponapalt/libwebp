@@ -29,7 +29,7 @@ static WEBP_INLINE uint16_t SharpYuvClip16(int v, int max) {
 // bounded sRGB case comes within 1 of overflowing 32 bits at full white.
 static WEBP_INLINE int SharpYuvRGBToGray(int64_t r, int64_t g, int64_t b) {
   const int64_t luma =
-      13933 * r + 46871 * g + 4732 * b + (1LL << (SHARPYUV_YUV_FIX - 1));
+      13933 * r + 46871 * g + 4732 * b + (1i64 << (SHARPYUV_YUV_FIX - 1));
   return (int)(luma >> SHARPYUV_YUV_FIX);
 }
 
@@ -37,7 +37,7 @@ static WEBP_INLINE int SharpYuvRGBToGray(int64_t r, int64_t g, int64_t b) {
 // (SHARPYUV_YUV_FIX + sfix)), fit in int64's
 static WEBP_INLINE int SharpYuvConvertComponent(int r, int g, int b,
                                                 const int coeffs[4], int sfix) {
-  const int64_t srounder = 1LL << (SHARPYUV_YUV_FIX + sfix - 1);
+  const int64_t srounder = 1i64 << (SHARPYUV_YUV_FIX + sfix - 1);
   const int64_t luma = (int64_t)coeffs[0] * r + (int64_t)coeffs[1] * g +
                        (int64_t)coeffs[2] * b + coeffs[3] + srounder;
   return (int)(luma >> (SHARPYUV_YUV_FIX + sfix));

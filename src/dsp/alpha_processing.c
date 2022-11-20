@@ -19,6 +19,8 @@
 #include "src/utils/utils.h"
 #include "src/webp/types.h"
 
+#pragma warning(disable:4761)
+
 // Tables can be faster on some platform but incur some extra binary size (~2k).
 #if !defined(USE_TABLES_FOR_ALPHA_MULT)
 #define USE_TABLES_FOR_ALPHA_MULT 0  // ALTERNATE_CODE
