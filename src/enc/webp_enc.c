@@ -270,7 +270,7 @@ static int DeleteVP8Encoder(VP8Encoder* enc) {
 
 #if !defined(WEBP_DISABLE_STATS)
 static double GetPSNR(uint64_t err, uint64_t size) {
-  return (err > 0 && size > 0) ? 10. * log10(255. * 255. * size / err) : 99.;
+  return (err > 0 && size > 0) ? 10. * log10(255. * 255. * (_int64)size / (_int64)err) : 99.;
 }
 
 static void FinalizePSNR(const VP8Encoder* const enc) {

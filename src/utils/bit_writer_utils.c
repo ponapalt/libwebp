@@ -42,7 +42,7 @@ static int BitWriterResize(VP8BitWriter* const bw, size_t extra_size) {
   new_size = 2 * bw->max_pos;
   if (new_size < needed_size) new_size = needed_size;
   if (new_size < 1024) new_size = 1024;
-  new_buf = (uint8_t*)WebPSafeMalloc(1ULL, new_size);
+  new_buf = (uint8_t*)WebPSafeMalloc(1Ui64, new_size);
   if (new_buf == NULL) {
     bw->error = 1;
     return 0;
@@ -200,7 +200,7 @@ void VP8BitWriterWipeOut(VP8BitWriter* const bw) {
 
 // This is the minimum amount of size the memory buffer is guaranteed to grow
 // when extra space is needed.
-#define MIN_EXTRA_SIZE (32768ULL)
+#define MIN_EXTRA_SIZE (32768Ui64)
 
 // Returns 1 on success.
 static int VP8LBitWriterResize(VP8LBitWriter* const bw, size_t extra_size) {
@@ -220,7 +220,7 @@ static int VP8LBitWriterResize(VP8LBitWriter* const bw, size_t extra_size) {
   // make allocated size multiple of 1k
   allocated_size = (((allocated_size >> 10) + 1) << 10);
   allocated_buf = (uint8_t*)WEBP_UNSAFE_FORGE_BIDI_INDEXABLE(
-      void*, WebPSafeMalloc(1ULL, allocated_size), allocated_size);
+      void*, WebPSafeMalloc(1Ui64, allocated_size), allocated_size);
   if (allocated_buf == NULL) {
     bw->error = 1;
     return 0;

@@ -344,7 +344,7 @@ static void ColorSpaceInverseTransform_C(const VP8LTransform* const transform,
 // Separate out pixels packed together using pixel-bundling.
 // We define two methods for ARGB data (uint32_t) and alpha-only data (uint8_t).
 // clang-format off
-#define COLOR_INDEX_INVERSE(FUNC_NAME, F_NAME, STATIC_DECL, TYPE, BIT_SUFFIX,  \
+#define COLOR_INDEX_INVERSE(FUNC_NAME, F_NAME, TYPE, BIT_SUFFIX,  \
                             GET_INDEX, GET_VALUE)                              \
 static void F_NAME(const TYPE* src, const uint32_t* const color_map,           \
                    TYPE* dst, int y_start, int y_end, int width) {             \
@@ -356,7 +356,7 @@ static void F_NAME(const TYPE* src, const uint32_t* const color_map,           \
     }                                                                          \
   }                                                                            \
 }                                                                              \
-STATIC_DECL void FUNC_NAME(const VP8LTransform* const transform,               \
+void FUNC_NAME(const VP8LTransform* const transform,               \
                            int y_start, int y_end, const TYPE* src,            \
                            TYPE* dst) {                                        \
   int y;                                                                       \
@@ -386,9 +386,9 @@ STATIC_DECL void FUNC_NAME(const VP8LTransform* const transform,               \
 }
 // clang-format on
 
-COLOR_INDEX_INVERSE(ColorIndexInverseTransform_C, MapARGB_C, static, uint32_t,
+COLOR_INDEX_INVERSE(ColorIndexInverseTransform_C, MapARGB_C, uint32_t,
                     32b, VP8GetARGBIndex, VP8GetARGBValue)
-COLOR_INDEX_INVERSE(VP8LColorIndexInverseTransformAlpha, MapAlpha_C, , uint8_t,
+COLOR_INDEX_INVERSE(VP8LColorIndexInverseTransformAlpha, MapAlpha_C, uint8_t,
                     8b, VP8GetAlphaIndex, VP8GetAlphaValue)
 
 #undef COLOR_INDEX_INVERSE

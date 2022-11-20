@@ -31,10 +31,15 @@ typedef signed short int16_t;
 typedef unsigned short uint16_t;
 typedef signed int int32_t;
 typedef unsigned int uint32_t;
-typedef unsigned long long int uint64_t;
-typedef long long int int64_t;
+typedef unsigned __int64 uint64_t;
+typedef __int64 int64_t;
 #define WEBP_INLINE __forceinline
-#endif /* _MSC_VER */
+#ifdef _WIN64
+typedef unsigned __int64 uintptr_t;
+#else
+typedef unsigned int uintptr_t;
+#endif
+#endif  /* _MSC_VER */
 
 #ifndef WEBP_NODISCARD
 #if defined(WEBP_ENABLE_NODISCARD) && WEBP_ENABLE_NODISCARD
