@@ -343,6 +343,10 @@ static void ColorSpaceInverseTransform_C(const VP8LTransform* const transform,
 
 // Separate out pixels packed together using pixel-bundling.
 // We define two methods for ARGB data (uint32_t) and alpha-only data (uint8_t).
+// VC6's preprocessor rejects empty macro arguments, so the linkage is
+// passed as a named token that expands to 'static' or to nothing.
+#define STATIC_DECL_LOCAL static
+#define STATIC_DECL_GLOBAL
 // clang-format off
 #define COLOR_INDEX_INVERSE(FUNC_NAME, F_NAME, STATIC_DECL, TYPE, BIT_SUFFIX,  \
                             GET_INDEX, GET_VALUE)                              \
@@ -414,12 +418,16 @@ STATIC_DECL void FUNC_NAME(const VP8LTransform* const transform,               \
 }
 // clang-format on
 
-COLOR_INDEX_INVERSE(ColorIndexInverseTransform_C, MapARGB_C, static, uint32_t,
-                    32b, VP8GetARGBIndex, VP8GetARGBValue)
-COLOR_INDEX_INVERSE(VP8LColorIndexInverseTransformAlpha, MapAlpha_C, , uint8_t,
-                    8b, VP8GetAlphaIndex, VP8GetAlphaValue)
+COLOR_INDEX_INVERSE(ColorIndexInverseTransform_C, MapARGB_C,
+                    STATIC_DECL_LOCAL, uint32_t, 32b, VP8GetARGBIndex,
+                    VP8GetARGBValue)
+COLOR_INDEX_INVERSE(VP8LColorIndexInverseTransformAlpha, MapAlpha_C,
+                    STATIC_DECL_GLOBAL, uint8_t, 8b, VP8GetAlphaIndex,
+                    VP8GetAlphaValue)
 
 #undef COLOR_INDEX_INVERSE
+#undef STATIC_DECL_GLOBAL
+#undef STATIC_DECL_LOCAL
 
 void VP8LInverseTransform(const VP8LTransform* const transform, int row_start,
                           int row_end, const uint32_t* const in,

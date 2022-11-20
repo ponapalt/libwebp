@@ -26,6 +26,8 @@
 #include "src/webp/format_constants.h"
 #include "src/webp/types.h"
 
+#pragma warning(disable:4761)
+
 #define MIN_BLOCK_SIZE 256  // minimum block size for backward references
 
 // 1M window (4M bytes) minus 120 special codes for short distances.
@@ -152,7 +154,7 @@ static PixOrCopyBlock* BackwardRefsNewBlock(VP8LBackwardRefs* const refs) {
   PixOrCopyBlock* b = refs->free_blocks;
   if (b == NULL) {  // allocate new memory chunk
     const size_t total_size = sizeof(*b) + refs->block_size * sizeof(*b->start);
-    b = (PixOrCopyBlock*)WebPSafeMalloc(1ULL, total_size);
+    b = (PixOrCopyBlock*)WebPSafeMalloc(1Ui64, total_size);
     if (b == NULL) {
       refs->error |= 1;
       return NULL;

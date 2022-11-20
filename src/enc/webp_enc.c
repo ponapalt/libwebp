@@ -111,7 +111,7 @@ static void MapConfigToTools(VP8Encoder* const enc) {
 
   // partition0 = 512k max.
   enc->mb_header_limit =
-      (score_t)256 * 510 * 8 * 1024 / (enc->mb_w * enc->mb_h);
+      (int)((score_t)256 * 510 * 8 * 1024 / (enc->mb_w * enc->mb_h));
 
   enc->thread_level = config->thread_level;
 
@@ -270,7 +270,9 @@ static int DeleteVP8Encoder(VP8Encoder* enc) {
 
 #if !defined(WEBP_DISABLE_STATS)
 static double GetPSNR(uint64_t err, uint64_t size) {
-  return (err > 0 && size > 0) ? 10. * log10(255. * 255. * size / err) : 99.;
+  return (err > 0 && size > 0)
+             ? 10. * log10(255. * 255. * (int64_t)size / (int64_t)err)
+             : 99.;
 }
 
 static void FinalizePSNR(const VP8Encoder* const enc) {

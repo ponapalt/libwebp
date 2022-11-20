@@ -20,7 +20,7 @@
 
 //------------------------------------------------------------------------------
 
-#define INVALID_BIT_POS (1ull << 63)
+#define INVALID_BIT_POS (1ui64 << 63)
 
 // In most cases, we don't need to use a full arithmetic decoder, since
 // all the header's bits are written using a uniform probability of 128.
@@ -61,7 +61,7 @@ int VP8EstimateQuality(const uint8_t* const data, size_t size) {
 
   while (pos < size) {
     sig = (sig >> 8) | ((uint64_t)data[pos++] << 40);
-    if ((sig >> 24) == 0x2a019dull) {
+    if ((sig >> 24) == 0x2a019dui64) {
       ok = 1;
       break;
     }

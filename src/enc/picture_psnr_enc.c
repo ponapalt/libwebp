@@ -146,7 +146,7 @@ int WebPPlaneDistortion(const uint8_t* src, size_t src_stride,
     uint8_t* tmp1;
     uint8_t* tmp2;
     allocated =
-        (uint8_t*)WebPSafeMalloc(2ULL * width * height, sizeof(*allocated));
+        (uint8_t*)WebPSafeMalloc(2Ui64 * width * height, sizeof(*allocated));
     if (allocated == NULL) return 0;
     tmp1 = allocated;
     tmp2 = tmp1 + (size_t)width * height;
