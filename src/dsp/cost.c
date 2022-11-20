@@ -19,6 +19,8 @@
 #include "src/enc/vp8i_enc.h"
 #include "src/webp/types.h"
 
+#pragma warning(disable:4761)
+
 //------------------------------------------------------------------------------
 // Boolean-cost cost table
 

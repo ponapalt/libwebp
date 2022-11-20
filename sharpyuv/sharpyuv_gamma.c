@@ -178,6 +178,12 @@ static WEBP_INLINE float Powf(float base, float exp) {
 
 static WEBP_INLINE float Log10f(float x) { return (float)log10((double)x); }
 
+static WEBP_INLINE float Expf(float x) { return (float)exp((double)x); }
+
+static WEBP_INLINE float Logf(float x) { return (float)log((double)x); }
+
+static WEBP_INLINE float Sqrtf(float x) { return (float)sqrt((double)x); }
+
 static float ToLinear470M(float gamma) {
   return Powf(CLAMP(gamma, 0.f, 1.f), 2.2f);
 }
@@ -319,7 +325,7 @@ static float ToLinearHlg(float gamma) {
   } else if (gamma <= 0.5f) {
     return Powf((gamma * gamma) * (1.f / 3.f), 1.2f);
   }
-  return Powf((expf((gamma - 0.55991073f) / 0.17883277f) + 0.28466892f) / 12.0f,
+  return Powf((Expf((gamma - 0.55991073f) / 0.17883277f) + 0.28466892f) / 12.0f,
               1.2f);
 }
 
@@ -328,9 +334,9 @@ static float FromLinearHlg(float linear) {
   if (linear < 0.f) {
     return 0.f;
   } else if (linear <= (1.f / 12.f)) {
-    return sqrtf(3.f * linear);
+    return Sqrtf(3.f * linear);
   }
-  return 0.17883277f * logf(12.f * linear - 0.28466892f) + 0.55991073f;
+  return 0.17883277f * Logf(12.f * linear - 0.28466892f) + 0.55991073f;
 }
 
 uint32_t SharpYuvGammaToLinear(uint16_t v, int bit_depth,
