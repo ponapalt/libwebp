@@ -45,9 +45,9 @@ static WEBP_INLINE double SSIMCalculation(const VP8DistoStats* const stats,
     const uint64_t den_S = (sxx + syy + C2) >> 8;
     const uint64_t fnum = (2 * xmym + C1) * num_S;
     const uint64_t fden = (xmxm + ymym + C1) * den_S;
-    const double r = (double)fnum / fden;
+    const double r = (double)(_int64)fnum / (_int64)fden;
     assert(r >= 0. && r <= 1.0);
-    return r;
+  	return r;
   }
   return 1.;  // area is too dark to contribute meaningfully
 }
