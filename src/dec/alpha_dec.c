@@ -33,7 +33,7 @@ WEBP_ASSUME_UNSAFE_INDEXABLE_ABI
 
 // Allocates a new alpha decoder instance.
 WEBP_NODISCARD static ALPHDecoder* ALPHNew(void) {
-  ALPHDecoder* const dec = (ALPHDecoder*)WebPSafeCalloc(1ULL, sizeof(*dec));
+  ALPHDecoder* const dec = (ALPHDecoder*)WebPSafeCalloc(1Ui64, sizeof(*dec));
   return dec;
 }
 

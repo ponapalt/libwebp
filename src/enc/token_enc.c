@@ -71,7 +71,7 @@ static int TBufferNewPage(VP8TBuffer* const b) {
   VP8Tokens* page = NULL;
   if (!b->error) {
     const size_t size = sizeof(*page) + b->page_size * sizeof(token_t);
-    page = (VP8Tokens*)WebPSafeMalloc(1ULL, size);
+    page = (VP8Tokens*)WebPSafeMalloc(1Ui64, size);
   }
   if (page == NULL) {
     b->error = 1;

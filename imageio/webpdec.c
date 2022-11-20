@@ -50,7 +50,7 @@ static void PrintAnimationWarning(const WebPDecoderConfig* const config) {
 }
 
 void PrintWebPError(const char* const in_file, int status) {
-  WFPRINTF(stderr, "Decoding of %s failed.\n", (const W_CHAR*)in_file);
+  WFPRINTF(stderr, "Decoding of %s failed.\n", (const W_CHAR*)in_file ,0);
   fprintf(stderr, "Status: %d", status);
   if (status >= VP8_STATUS_OK && status <= VP8_STATUS_NOT_ENOUGH_DATA) {
     fprintf(stderr, "(%s)", kStatusMessages[status]);
