@@ -26,7 +26,7 @@
 //------------------------------------------------------------------------------
 
 static int DummyWriter(const uint8_t* data, size_t data_size,
-                       const WebPPicture* const picture) {
+                       const WebPPicture* picture) {
   // The following are to prevent 'unused variable' error message.
   (void)data;
   (void)data_size;
@@ -196,9 +196,9 @@ int WebPMemoryWrite(const uint8_t* data, size_t data_size,
   next_size = (uint64_t)w->size + data_size;
   if (next_size > w->max_size) {
     uint8_t* new_mem;
-    uint64_t next_max_size = 2ULL * w->max_size;
+    uint64_t next_max_size = 2Ui64 * w->max_size;
     if (next_max_size < next_size) next_max_size = next_size;
-    if (next_max_size < 8192ULL) next_max_size = 8192ULL;
+    if (next_max_size < 8192Ui64) next_max_size = 8192Ui64;
     new_mem = (uint8_t*)WebPSafeMalloc(next_max_size, 1);
     if (new_mem == NULL) {
       return 0;
@@ -228,7 +228,7 @@ void WebPMemoryWriterClear(WebPMemoryWriter* writer) {
 //------------------------------------------------------------------------------
 // Simplest high-level calls:
 
-typedef int (*Importer)(WebPPicture* const, const uint8_t* const, int);
+typedef int (*Importer)(WebPPicture*, const uint8_t*, int);
 
 static size_t Encode(const uint8_t* rgba, int width, int height, int stride,
                      Importer import, float quality_factor, int lossless,

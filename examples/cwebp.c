@@ -306,7 +306,7 @@ static void PrintMapInfo(const WebPPicture* const pic) {
 //------------------------------------------------------------------------------
 
 static int MyWriter(const uint8_t* data, size_t data_size,
-                    const WebPPicture* const pic) {
+                    const WebPPicture* pic) {
   FILE* const out = (FILE*)pic->custom_ptr;
   return data_size ? (fwrite(data, data_size, 1, out) == 1) : 1;
 }
@@ -549,7 +549,7 @@ static void ApplyResizeMode(const int resize_mode, const WebPPicture* const pic,
 
 //------------------------------------------------------------------------------
 
-static int ProgressReport(int percent, const WebPPicture* const picture) {
+static int ProgressReport(int percent, const WebPPicture* picture) {
   fprintf(stderr, "[%s]: %3d %%      \r", (char*)picture->user_data, percent);
   return 1;  // all ok
 }

@@ -27,8 +27,10 @@
 #include "src/webp/format_constants.h"
 #include "src/webp/types.h"
 
+#pragma warning(disable:4761)
+
 #define HISTO_SIZE (4 * 256)
-static const int64_t kSpatialPredictorBias = 15ll << LOG_2_PRECISION_BITS;
+static const int64_t kSpatialPredictorBias = 15i64 << LOG_2_PRECISION_BITS;
 static const int kPredLowEffort = 11;
 static const uint32_t kMaskAlpha = 0xff000000;
 static const int kNumPredModes = 14;
@@ -961,14 +963,14 @@ static int64_t GetPredictionCostCrossColorRed(
   cur_diff = PredictionCostCrossColor(accumulated_red_histo, histo);
   if ((uint8_t)green_to_red == prev_x.green_to_red) {
     // favor keeping the areas locally similar
-    cur_diff -= 3ll << LOG_2_PRECISION_BITS;
+    cur_diff -= 3i64 << LOG_2_PRECISION_BITS;
   }
   if ((uint8_t)green_to_red == prev_y.green_to_red) {
     // favor keeping the areas locally similar
-    cur_diff -= 3ll << LOG_2_PRECISION_BITS;
+    cur_diff -= 3i64 << LOG_2_PRECISION_BITS;
   }
   if (green_to_red == 0) {
-    cur_diff -= 3ll << LOG_2_PRECISION_BITS;
+    cur_diff -= 3i64 << LOG_2_PRECISION_BITS;
   }
   return cur_diff;
 }
@@ -1017,25 +1019,25 @@ static int64_t GetPredictionCostCrossColorBlue(
   cur_diff = PredictionCostCrossColor(accumulated_blue_histo, histo);
   if ((uint8_t)green_to_blue == prev_x.green_to_blue) {
     // favor keeping the areas locally similar
-    cur_diff -= 3ll << LOG_2_PRECISION_BITS;
+    cur_diff -= 3i64 << LOG_2_PRECISION_BITS;
   }
   if ((uint8_t)green_to_blue == prev_y.green_to_blue) {
     // favor keeping the areas locally similar
-    cur_diff -= 3ll << LOG_2_PRECISION_BITS;
+    cur_diff -= 3i64 << LOG_2_PRECISION_BITS;
   }
   if ((uint8_t)red_to_blue == prev_x.red_to_blue) {
     // favor keeping the areas locally similar
-    cur_diff -= 3ll << LOG_2_PRECISION_BITS;
+    cur_diff -= 3i64 << LOG_2_PRECISION_BITS;
   }
   if ((uint8_t)red_to_blue == prev_y.red_to_blue) {
     // favor keeping the areas locally similar
-    cur_diff -= 3ll << LOG_2_PRECISION_BITS;
+    cur_diff -= 3i64 << LOG_2_PRECISION_BITS;
   }
   if (green_to_blue == 0) {
-    cur_diff -= 3ll << LOG_2_PRECISION_BITS;
+    cur_diff -= 3i64 << LOG_2_PRECISION_BITS;
   }
   if (red_to_blue == 0) {
-    cur_diff -= 3ll << LOG_2_PRECISION_BITS;
+    cur_diff -= 3i64 << LOG_2_PRECISION_BITS;
   }
   return cur_diff;
 }

@@ -224,7 +224,7 @@ int WebPPictureRescale(WebPPicture* picture, int width, int height) {
   }
 
   if (!picture->use_argb) {
-    work = (rescaler_t*)WebPSafeMalloc(2ULL * width, sizeof(*work));
+    work = (rescaler_t*)WebPSafeMalloc(2Ui64 * width, sizeof(*work));
     if (work == NULL) {
       status = VP8_ENC_ERROR_OUT_OF_MEMORY;
       goto Cleanup;
@@ -255,7 +255,7 @@ int WebPPictureRescale(WebPPicture* picture, int width, int height) {
     }
     AlphaMultiplyY(&tmp, 1);
   } else {
-    work = (rescaler_t*)WebPSafeMalloc(2ULL * width * 4, sizeof(*work));
+    work = (rescaler_t*)WebPSafeMalloc(2Ui64 * width * 4, sizeof(*work));
     if (work == NULL) {
       status = VP8_ENC_ERROR_OUT_OF_MEMORY;
       goto Cleanup;

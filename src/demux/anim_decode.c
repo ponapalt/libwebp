@@ -117,7 +117,7 @@ WebPAnimDecoder* WebPAnimDecoderNewInternal(
   }
 
   // Note: calloc() so that the pointer members are initialized to NULL.
-  dec = (WebPAnimDecoder*)WebPSafeCalloc(1ULL, sizeof(*dec));
+  dec = (WebPAnimDecoder*)WebPSafeCalloc(1Ui64, sizeof(*dec));
   if (dec == NULL) goto Error;
 
   if (dec_options != NULL) {
@@ -225,7 +225,7 @@ static uint8_t BlendChannelNonPremult(uint32_t src, uint8_t src_a, uint32_t dst,
   const uint8_t src_channel = (src >> shift) & 0xff;
   const uint8_t dst_channel = (dst >> shift) & 0xff;
   const uint32_t blend_unscaled = src_channel * src_a + dst_channel * dst_a;
-  assert(blend_unscaled < (1ULL << 32) / scale);
+  assert(blend_unscaled < (1Ui64 << 32) / scale);
   return (blend_unscaled * scale) >> CHANNEL_SHIFT(3);
 }
 
