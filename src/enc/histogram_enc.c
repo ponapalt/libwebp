@@ -286,7 +286,7 @@ static uint64_t InitialHuffmanCost(void) {
   static const uint64_t kHuffmanCodeOfHuffmanCodeSize = CODE_LENGTH_CODES * 3;
   // Subtract a bias of 9.1.
   return (kHuffmanCodeOfHuffmanCodeSize << LOG_2_PRECISION_BITS) -
-         DivRound(91ll << LOG_2_PRECISION_BITS, 10);
+         DivRound(91i64 << LOG_2_PRECISION_BITS, 10);
 }
 
 // Finalize the Huffman cost based on streak numbers and length type (<3 or >=3)
@@ -586,7 +586,9 @@ static int GetBinIdForEntropy(uint64_t min, uint64_t max, uint64_t val) {
   const uint64_t range = max - min;
   if (range > 0) {
     const uint64_t delta = val - min;
-    return (int)((NUM_PARTITIONS - 1e-6) * delta / range);
+    // VC6 cannot convert uint64_t to double; both values are small enough
+    // to be represented exactly as int64_t.
+    return (int)((NUM_PARTITIONS - 1e-6) * (int64_t)delta / (int64_t)range);
   } else {
     return 0;
   }

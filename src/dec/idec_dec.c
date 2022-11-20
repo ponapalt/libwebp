@@ -456,7 +456,7 @@ static VP8StatusCode CopyParts0Data(WebPIDecoder* const idec) {
     // part_size can be 0 when the remaining bits of partition #0 have already
     // been prefetched into br->value during VP8GetHeaders().
     uint8_t* WEBP_BIDI_INDEXABLE const part0_buf =
-        (uint8_t*)WebPSafeMalloc(1ULL, (part_size > 0) ? part_size : 1);
+        (uint8_t*)WebPSafeMalloc(1Ui64, (part_size > 0) ? part_size : 1);
     if (part0_buf == NULL) {
       return VP8_STATUS_OUT_OF_MEMORY;
     }
@@ -691,7 +691,7 @@ static VP8StatusCode IDecode(WebPIDecoder* idec) {
 WEBP_NODISCARD static WebPIDecoder* NewDecoder(
     WebPDecBuffer* const output_buffer,
     const WebPBitstreamFeatures* const features) {
-  WebPIDecoder* idec = (WebPIDecoder*)WebPSafeCalloc(1ULL, sizeof(*idec));
+  WebPIDecoder* idec = (WebPIDecoder*)WebPSafeCalloc(1Ui64, sizeof(*idec));
   if (idec == NULL) {
     return NULL;
   }
