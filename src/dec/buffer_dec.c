@@ -105,7 +105,7 @@ static VP8StatusCode AllocateBuffer(WebPDecBuffer* const buffer) {
     int stride;
     uint64_t size;
 
-    if ((uint64_t)w * kModeBpp[mode] >= (1ull << 31)) {
+    if ((uint64_t)w * kModeBpp[mode] >= (1Ui64 << 31)) {
       return VP8_STATUS_INVALID_PARAM;
     }
     stride = w * kModeBpp[mode];
