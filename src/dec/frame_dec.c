@@ -698,7 +698,7 @@ static int AllocateMemory(VP8Decoder* const dec) {
   const size_t cache_size = top_size * cache_height;
   // alpha_size is the only one that scales as width x height.
   const uint64_t alpha_size = (dec->alpha_data_ != NULL) ?
-      (uint64_t)dec->pic_hdr_.width_ * dec->pic_hdr_.height_ : 0ULL;
+      (uint64_t)dec->pic_hdr_.width_ * dec->pic_hdr_.height_ : 0Ui64;
   const uint64_t needed = (uint64_t)intra_pred_mode_size
                         + top_size + mb_info_size + f_info_size
                         + yuv_size + mb_data_size
