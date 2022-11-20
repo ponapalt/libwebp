@@ -98,7 +98,7 @@ static void AddSingle(uint32_t p, HistogramBuckets a, HistogramBuckets r,
 static WEBP_INLINE uint8_t HashPix(uint32_t pix) {
   // Note that masking with 0xffffffffu is for preventing an
   // 'unsigned int overflow' warning. Doesn't impact the compiled code.
-  return ((((uint64_t)pix + (pix >> 19)) * 0x39c5fba7ull) & 0xffffffffu) >> 24;
+  return ((((uint64_t)pix + (pix >> 19)) * 0x39c5fba7Ui64) & 0xffffffffu) >> 24;
 }
 
 static int AnalyzeEntropy(const uint32_t* argb, int width, int height,
@@ -468,9 +468,9 @@ static int GetHuffBitLengthsAndCodes(
     }
   }
 
-  buf_rle = (uint8_t*)WebPSafeMalloc(1ULL, max_num_symbols);
+  buf_rle = (uint8_t*)WebPSafeMalloc(1Ui64, max_num_symbols);
   huff_tree =
-      (HuffmanTree*)WebPSafeMalloc(3ULL * max_num_symbols, sizeof(*huff_tree));
+      (HuffmanTree*)WebPSafeMalloc(3Ui64 * max_num_symbols, sizeof(*huff_tree));
   if (buf_rle == NULL || huff_tree == NULL) goto End;
 
   // Create Huffman trees.
@@ -761,7 +761,7 @@ static int EncodeImageNoHuffman(VP8LBitWriter* const bw,
   int cache_bits = 0;
   VP8LHistogramSet* histogram_image = NULL;
   HuffmanTree* const huff_tree = (HuffmanTree*)WebPSafeMalloc(
-      3ULL * CODE_LENGTH_CODES, sizeof(*huff_tree));
+      3Ui64 * CODE_LENGTH_CODES, sizeof(*huff_tree));
   if (huff_tree == NULL) {
     WebPEncodingSetError(pic, VP8_ENC_ERROR_OUT_OF_MEMORY);
     goto Error;
@@ -855,7 +855,7 @@ static int EncodeImageInternal(
   uint32_t i, histogram_image_size = 0;
   size_t bit_array_size = 0;
   HuffmanTree* const huff_tree = (HuffmanTree*)WebPSafeMalloc(
-      3ULL * CODE_LENGTH_CODES, sizeof(*huff_tree));
+      3Ui64 * CODE_LENGTH_CODES, sizeof(*huff_tree));
   HuffmanTreeToken* tokens = NULL;
   HuffmanTreeCode* huffman_codes = NULL;
   uint32_t* const histogram_argb = (uint32_t*)WebPSafeMalloc(
@@ -1293,13 +1293,13 @@ static WEBP_INLINE uint32_t ApplyPaletteHash0(uint32_t color) {
 
 static WEBP_INLINE uint32_t ApplyPaletteHash1(uint32_t color) {
   // Forget about alpha.
-  return ((uint32_t)((color & 0x00ffffffu) * 4222244071ull)) >>
+  return ((uint32_t)((color & 0x00ffffffu) * 4222244071Ui64)) >>
          (32 - PALETTE_INV_SIZE_BITS);
 }
 
 static WEBP_INLINE uint32_t ApplyPaletteHash2(uint32_t color) {
   // Forget about alpha.
-  return ((uint32_t)((color & 0x00ffffffu) * ((1ull << 31) - 1))) >>
+  return ((uint32_t)((color & 0x00ffffffu) * ((1Ui64 << 31) - 1))) >>
          (32 - PALETTE_INV_SIZE_BITS);
 }
 
@@ -1450,7 +1450,7 @@ static int EncodePalette(VP8LBitWriter* const bw, int low_effort,
 
 static VP8LEncoder* VP8LEncoderNew(const WebPConfig* const config,
                                    const WebPPicture* const picture) {
-  VP8LEncoder* const enc = (VP8LEncoder*)WebPSafeCalloc(1ULL, sizeof(*enc));
+  VP8LEncoder* const enc = (VP8LEncoder*)WebPSafeCalloc(1Ui64, sizeof(*enc));
   if (enc == NULL) {
     WebPEncodingSetError(picture, VP8_ENC_ERROR_OUT_OF_MEMORY);
     return NULL;
