@@ -98,13 +98,13 @@
 
 #define WFOPEN(ARG, OPT) fopen(ARG, OPT)
 
-#define WPRINTF(STR, ...) printf(STR, __VA_ARGS__)
-#define WFPRINTF(STREAM, STR, ...) fprintf(STREAM, STR, __VA_ARGS__)
+#define WPRINTF(STR, FMT, PARAM) printf(STR, FMT, PARAM)
+#define WFPRINTF(STREAM, STR, PARAM) fprintf(STREAM, STR, PARAM)
 
 #define WSTRLEN(FILENAME) strlen(FILENAME)
 #define WSTRCMP(FILENAME, STR) strcmp(FILENAME, STR)
 #define WSTRRCHR(FILENAME, STR) strrchr(FILENAME, STR)
-#define WSNPRINTF(A, B, STR, ...) snprintf(A, B, STR, __VA_ARGS__)
+#define WSNPRINTF(A, B, STR, FMT, PARAM) snprintf(A, B, STR, FMT, PARAM)
 
 #endif  // defined(_WIN32) && defined(_UNICODE)
 
