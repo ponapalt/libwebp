@@ -34,7 +34,7 @@
   (RIFF_HEADER_SIZE + CHUNK_HEADER_SIZE + VP8_FRAME_HEADER_SIZE)
 #define DQ_LIMIT 0.4  // convergence is considered reached if dq < DQ_LIMIT
 // we allow 2k of extra head-room in PARTITION0 limit.
-#define PARTITION0_SIZE_LIMIT ((VP8_MAX_PARTITION0_SIZE - 2048ULL) << 11)
+#define PARTITION0_SIZE_LIMIT ((VP8_MAX_PARTITION0_SIZE - 2048Ui64) << 11)
 
 static float Clamp(float v, float min, float max) {
   return (v < min) ? min : (v > max) ? max : v;
@@ -60,7 +60,7 @@ static int InitPassStats(const VP8Encoder* const enc, PassStats* const s) {
   s->qmin = 1.f * enc->config->qmin;
   s->qmax = 1.f * enc->config->qmax;
   s->q = s->last_q = Clamp(enc->config->quality, s->qmin, s->qmax);
-  s->target = do_size_search       ? (double)target_size
+  s->target = do_size_search       ? (double)(_int64)target_size
               : (target_PSNR > 0.) ? target_PSNR
                                    : 40.;  // default, just in case
   s->value = s->last_value = 0.;
@@ -565,7 +565,7 @@ static void ResetSideInfo(const VP8EncIterator* const it) { (void)it; }
 #endif  // !defined(WEBP_DISABLE_STATS)
 
 static double GetPSNR(uint64_t mse, uint64_t size) {
-  return (mse > 0 && size > 0) ? 10. * log10(255. * 255. * size / mse) : 99;
+  return (mse > 0 && size > 0) ? 10. * log10(255. * 255. * (_int64)size / (_int64)mse) : 99;
 }
 
 //------------------------------------------------------------------------------
@@ -616,7 +616,7 @@ static uint64_t OneStatPass(VP8Encoder* const enc, VP8RDLevel rd_opt,
     size += FinalizeSkipProba(enc);
     size += FinalizeTokenProbas(&enc->proba);
     size = ((size + size_p0 + 1024) >> 11) + HEADER_SIZE_ESTIMATE;
-    s->value = (double)size;
+    s->value = (double)(_int64)size;
   } else {
     s->value = GetPSNR(distortion, pixel_count);
   }
@@ -866,7 +866,7 @@ int VP8EncTokenLoop(VP8Encoder* const enc) {
       size += VP8EstimateTokenSize(&enc->tokens, (const uint8_t*)proba->coeffs);
       size = (size + size_p0 + 1024) >> 11;  // -> size in bytes
       size += HEADER_SIZE_ESTIMATE;
-      stats.value = (double)size;
+      stats.value = (double)(_int64)size;
     } else {  // compute and store PSNR
       stats.value = GetPSNR(distortion, pixel_count);
     }
