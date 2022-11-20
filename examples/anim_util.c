@@ -34,7 +34,11 @@
 #endif
 
 #ifndef WEBP_UINT64_MAX
+#if defined(_MSC_VER)
+#define WEBP_UINT64_MAX (~0ui64)  // VC6 does not know the 'ull' suffix
+#else
 #define WEBP_UINT64_MAX (~0ull)
+#endif
 #endif
 
 static const int kNumChannels = 4;

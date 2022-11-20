@@ -25,6 +25,8 @@
 #include "./sharpyuv_gamma.h"
 #include "webp/types.h"
 
+#pragma warning(disable:4761)
+
 //------------------------------------------------------------------------------
 
 int SharpYuvGetVersion(void) { return SHARPYUV_VERSION; }

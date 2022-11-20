@@ -145,7 +145,7 @@ int VP8LGetInfo(const uint8_t* WEBP_COUNTED_BY(data_size) data,
 
 #if defined(__GNUC__) || defined(__clang__)
 #define WEBP_NOINLINE __attribute__((noinline))
-#elif defined(_MSC_VER)
+#elif defined(_MSC_VER) && _MSC_VER >= 1310  // __declspec(noinline): VC7.1+
 #define WEBP_NOINLINE __declspec(noinline)
 #else
 #define WEBP_NOINLINE
@@ -677,7 +677,7 @@ WEBP_NODISCARD static int AllocateAndInitRescaler(VP8LDecoder* const dec,
   uint8_t* WEBP_BIDI_INDEXABLE memory = (uint8_t*)WebPSafeMalloc(
       work_size_bytes + WEBP_ALIGN_CST, sizeof(*memory));
   WebPRescaler* rescaler =
-      (WebPRescaler*)WebPSafeMalloc(1ULL, sizeof(*rescaler));
+      (WebPRescaler*)WebPSafeMalloc(1Ui64, sizeof(*rescaler));
   if (rescaler == NULL || memory == NULL || scaled_data == NULL) {
     WebPSafeFree(rescaler);
     WebPSafeFree(memory);
@@ -1827,7 +1827,7 @@ static void ClearMetadata(VP8LMetadata* const hdr) {
 // VP8LDecoder
 
 VP8LDecoder* VP8LNew(void) {
-  VP8LDecoder* const dec = (VP8LDecoder*)WebPSafeCalloc(1ULL, sizeof(*dec));
+  VP8LDecoder* const dec = (VP8LDecoder*)WebPSafeCalloc(1Ui64, sizeof(*dec));
   if (dec == NULL) return NULL;
   dec->status = VP8_STATUS_OK;
   dec->state = READ_DIM;

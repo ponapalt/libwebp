@@ -43,8 +43,8 @@ extern "C" {
 // https://en.cppreference.com/w/c/language/restrict
 #if defined(__GNUC__)
 #define WEBP_RESTRICT __restrict__
-#elif defined(_MSC_VER)
-#define WEBP_RESTRICT __restrict
+//#elif defined(_MSC_VER)
+//#define WEBP_RESTRICT __restrict
 #else
 #define WEBP_RESTRICT
 #endif
@@ -105,8 +105,8 @@ extern VP8IntraPreds VP8EncPredChroma8;
 typedef int (*VP8Metric)(const uint8_t* WEBP_RESTRICT pix,
                          const uint8_t* WEBP_RESTRICT ref);
 extern VP8Metric VP8SSE16x16, VP8SSE16x8, VP8SSE8x8, VP8SSE4x4;
-typedef int (*VP8WMetric)(const uint8_t* WEBP_RESTRICT pix,
-                          const uint8_t* WEBP_RESTRICT ref,
+typedef int (*VP8WMetric)(const uint8_t* WEBP_RESTRICT const pix,
+                          const uint8_t* WEBP_RESTRICT const ref,
                           const uint16_t* WEBP_RESTRICT const weights);
 // The weights for VP8TDisto4x4 and VP8TDisto16x16 contain a row-major
 // 4 by 4 symmetric matrix.
