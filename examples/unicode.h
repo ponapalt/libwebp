@@ -98,13 +98,15 @@
 
 #define WFOPEN(ARG, OPT) fopen(ARG, OPT)
 
-#define WPRINTF(STR, ...) printf(STR, __VA_ARGS__)
-#define WFPRINTF(STREAM, STR, ...) fprintf(STREAM, STR, __VA_ARGS__)
+// Object-like macros: VC6 has no variadic macros, but no wrapping is needed
+// here since W_CHAR is char and TO_W_CHAR() is the identity.
+#define WPRINTF printf
+#define WFPRINTF fprintf
 
 #define WSTRLEN(FILENAME) strlen(FILENAME)
 #define WSTRCMP(FILENAME, STR) strcmp(FILENAME, STR)
 #define WSTRRCHR(FILENAME, STR) strrchr(FILENAME, STR)
-#define WSNPRINTF(A, B, STR, ...) snprintf(A, B, STR, __VA_ARGS__)
+#define WSNPRINTF snprintf
 
 #endif  // defined(_WIN32) && defined(_UNICODE)
 
