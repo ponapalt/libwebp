@@ -55,7 +55,7 @@ int VP8InitIoInternal(VP8Io* const io, int version) {
 }
 
 VP8Decoder* VP8New(void) {
-  VP8Decoder* const dec = (VP8Decoder*)WebPSafeCalloc(1ULL, sizeof(*dec));
+  VP8Decoder* const dec = (VP8Decoder*)WebPSafeCalloc(1Ui64, sizeof(*dec));
   if (dec != NULL) {
     SetOk(dec);
     WebPGetWorkerInterface()->Init(&dec->worker_);
