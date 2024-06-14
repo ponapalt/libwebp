@@ -20,6 +20,8 @@
 #include "src/dsp/yuv.h"
 #include "src/webp/decode.h"
 
+#pragma warning(disable:4761)
+
 //------------------------------------------------------------------------------
 // Fancy upsampler
 
