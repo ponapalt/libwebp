@@ -16,6 +16,8 @@
 
 #include <assert.h>
 
+#pragma warning(disable:4761)
+
 //------------------------------------------------------------------------------
 // Fancy upsampler
 
