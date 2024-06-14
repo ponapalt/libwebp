@@ -17,6 +17,8 @@
 #include "src/dec/vp8i_dec.h"
 #include "src/utils/utils.h"
 
+#pragma warning(disable:4761)
+
 //------------------------------------------------------------------------------
 
 static WEBP_INLINE uint8_t clip_8b(int v) {
