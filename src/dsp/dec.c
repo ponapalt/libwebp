@@ -22,6 +22,8 @@
 #include "src/utils/utils.h"
 #include "src/webp/types.h"
 
+#pragma warning(disable:4761)
+
 //------------------------------------------------------------------------------
 
 static WEBP_INLINE uint8_t clip_8b(int v) {
